@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 const Header = (props) => {
 
-   
-    
+
+
   return (
     <div className="app-header">
       <Link className="hero" id="title" to="/"><h1>Habitude</h1></Link>
       <nav>
-          <ul className="nav d-flex justify-content-around">
+        <ul className="nav d-flex justify-content-around">
           <li>
             <Link to="/">home</Link>
           </li>
@@ -21,13 +21,7 @@ const Header = (props) => {
           <li>
             <Link to="/contact">contact</Link>
           </li>
-          <li>
-          <form className="form-inline">
-          <input type="text" placeholder="Search..."/>
-          <input type="submit"/>
-          </form> 
-          </li>
-          </ul>
+        </ul>
       </nav>
     </div>
   )
