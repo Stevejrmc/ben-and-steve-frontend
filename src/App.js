@@ -12,15 +12,15 @@ import Footer from './components/Footer'
 
 const App = () => {
   const [posts, setPosts] = useState([]);
-  const [message, setMessage ] = useState("")
+
   const getPosts = () => {
-    axios.get('http://127.0.0.1:3000/')
+    axios.get('https://ben-and-steve.herokuapp.com/')
       .then((response) => setPosts(response.data))
       .catch((error) => console.log(error))
   };
 
   const handleCreate = (data) => {
-    axios.post('http://127.0.0.1:3000/posts', data)
+    axios.post('https://ben-and-steve.herokuapp.com/posts', data)
       .then((response) => {
         let newPosts = [...posts, response.data];
         setPosts(newPosts);
@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const handleDelete = (deletedPost) => {
-    axios.delete('http://127.0.0.1:3000/posts/' + deletedPost._id)
+    axios.delete('https://ben-and-steve.herokuapp.com/posts/' + deletedPost._id)
       .then((response) => {
         let newPosts = posts.filter((post) => {
           return post._id !== deletedPost._id
@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const handleEdit = (data) => {
-    axios.put('http://127.0.0.1:3000/posts/' + data._id, data)
+    axios.put('https://ben-and-steve.herokuapp.com/posts/' + data._id, data)
       .then((response) => {
         let newPosts = posts.map((post) => {
           return post._id !== data._id ? post : response.data
@@ -48,11 +48,12 @@ const App = () => {
   };
 
   const handleContacts = (data) => {
-    console.log(data)
-    axios.post('http://127.0.0.1:3000/contacts', data).then((response) => {
-        alert("We have received your comments!")
-      })
-  } 
+    axios.post('https://ben-and-steve.herokuapp.com/contacts', data).then((response) => {
+      alert("We have received your comments!");
+    }).catch((error) => {
+      alert("There was an error with your submission.");
+    });
+  }
 
   useEffect(() => {
     getPosts()
@@ -62,7 +63,6 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <div className="container">
-        {message}
         <Routes>
           <Route
             path="/"
